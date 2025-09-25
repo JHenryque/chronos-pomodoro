@@ -1,13 +1,17 @@
 import { Timer } from "lucide-react";
-import Heading from "./components/Heading/Heading";
+import Heading from "./components/Heading";
 import "./styles/global.css";
 import Container from "./components/Container/Container";
+import Logo from "./components/Logo";
+import Menu from "./components/Menu/Menu";
 
 export default function App() {
   console.log("Hello App");
   return (
     <>
       <Container>
+        <Logo />
+        <Menu />
         <Heading>
           Ola Mundo{" "}
           <button
