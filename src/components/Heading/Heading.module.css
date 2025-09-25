@@ -1,4 +1,4 @@
-.header {
+.heading {
   display: flex;
   margin: 3.2rem 0;
   align-items: center;
@@ -6,6 +6,6 @@
   gap: 2.4rem;
 }
 
-.list {
-  color: aquamarine;
+.cyan {
+  color: cyan;
 }
