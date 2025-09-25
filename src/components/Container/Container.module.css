@@ -1,0 +1,50 @@
+.container {
+  max-width: 98rem;
+
+  margin: 0 auto;
+}
+
+.content {
+  margin: 3.2rem;
+}
+
+.content > * + * {
+  margin-top: 3.2rem;
+}
+
+.content > :first-child {
+  margin-top: 0;
+}
+.content > :last-child {
+  margin-bottom: 0;
+}
+
+.content > :only-child {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.content > :only-child + * {
+  margin-top: 0;
+}
+.content > * + :only-child {
+  margin-top: 0;
+}
+
+.content > :only-child + :only-child {
+  margin-top: 0;
+}
+
+.content > :only-child + :only-child + * {
+  margin-top: 0;
+}
+.content > * + :only-child + :only-child {
+  margin-top: 0;
+}
+
+.content > * + :only-child + :only-child + * {
+  margin-top: 0;
+}
+.content > :only-child + * + :only-child {
+  margin-top: 0;
+}
