@@ -4,6 +4,7 @@ import "./styles/global.css";
 import Container from "./components/Container/Container";
 import Logo from "./components/Logo";
 import Menu from "./components/Menu/Menu";
+import CountDown from "./components/CountDown";
 
 export default function App() {
   console.log("Hello App");
@@ -24,6 +25,7 @@ export default function App() {
             <Timer />
           </button>
         </Heading>
+        <CountDown />
       </Container>
     </>
   );
