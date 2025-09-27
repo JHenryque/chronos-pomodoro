@@ -11,7 +11,10 @@ export default function Menu() {
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) {
     event.preventDefault();
+
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
+
+    document.documentElement.setAttribute("data-theme", theme);
   }
 
   return (
