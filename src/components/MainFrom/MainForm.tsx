@@ -24,7 +24,7 @@ export default function MainForm({ state }: HomeProps) {
       </div>
 
       <div className="formRow">
-        <p>Próximo intervalo é de {state.config.workTime}min.</p>
+        <p>Próximo intervalo é de {state.secondsRemaining}min.</p>
       </div>
 
       <div className="formRow">
