@@ -9,9 +9,13 @@ import DefaultInput from "./components/DefaultInput/DefaultInput";
 import Cycles from "./components/Cycles/Cycles";
 import DefaultButton from "./components/DefaultBotton/DefaultButton";
 import Footer from "./components/Footer/Footer";
+import { useState } from "react";
 
 export default function App() {
   console.log("Hello App");
+
+  const [button, setButton] = useState<boolean>(true);
+
   return (
     <>
       <Container>
@@ -56,10 +60,18 @@ export default function App() {
           </div>
 
           <div className="formRow">
-            {PlayCircleIcon ? (
-              <DefaultButton icon={<PlayCircleIcon />} color="green" />
+            {button ? (
+              <DefaultButton
+                icon={<PlayCircleIcon />}
+                color="green"
+                onClick={() => setButton(true)}
+              />
             ) : (
-              <DefaultButton icon={<StopCircleIcon />} color="red" />
+              <DefaultButton
+                icon={<StopCircleIcon />}
+                color="red"
+                onClick={() => setButton(false)}
+              />
             )}
           </div>
         </form>
