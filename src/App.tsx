@@ -1,4 +1,4 @@
-import { Timer } from "lucide-react";
+import { PlayCircleIcon, StopCircleIcon, Timer } from "lucide-react";
 import Heading from "./components/Heading";
 import "./styles/global.css";
 import Container from "./components/Container/Container";
@@ -7,6 +7,7 @@ import Menu from "./components/Menu/Menu";
 import CountDown from "./components/CountDown";
 import DefaultInput from "./components/DefaultInput/DefaultInput";
 import Cycles from "./components/Cycles/Cycles";
+import DefaultButton from "./components/DefaultBotton/DefaultButton";
 
 export default function App() {
   console.log("Hello App");
@@ -14,7 +15,9 @@ export default function App() {
     <>
       <Container>
         <Logo />
+
         <Menu />
+
         <Heading>
           Ola Mundo{" "}
           <button
@@ -27,10 +30,13 @@ export default function App() {
             <Timer />
           </button>
         </Heading>
+
         <CountDown />
+
         <form className="form">
           <div className="formRow">
             {/*  <DefaultInput abc={123} type="text" label="Task" /> iterxecion com a uniao */}
+
             <DefaultInput
               id="task"
               type="text"
@@ -39,6 +45,7 @@ export default function App() {
               disabled
             />
           </div>
+
           <div className="formRow">
             <p>Lorem ipsum dolor sit amet.</p>
           </div>
@@ -48,7 +55,11 @@ export default function App() {
           </div>
 
           <div className="formRow">
-            <button type="submit">Começar</button>
+            {PlayCircleIcon ? (
+              <DefaultButton icon={<PlayCircleIcon />} color="green" />
+            ) : (
+              <DefaultButton icon={<StopCircleIcon />} color="red" />
+            )}
           </div>
         </form>
       </Container>

@@ -25,7 +25,7 @@ body {
   color: var(--text-default);
   background-repeat: no-repeat;
   background-size: contain;
-  height: 96.6dvh;
+  height: 100%;
 }
 
 /* Default Input */
