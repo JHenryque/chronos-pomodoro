@@ -30,7 +30,7 @@ export default function App() {
         <form className="form">
           <div className="formRow">
             {/*  <DefaultInput abc={123} type="text" label="Task" /> iterxecion com a uniao */}
-            <DefaultInput id="task" type="text" label="Task" />
+            <DefaultInput id="task" type="text" label="Task" title="TITULO" />
           </div>
           <div className="formRow">
             <p>Lorem ipsum dolor sit amet.</p>
