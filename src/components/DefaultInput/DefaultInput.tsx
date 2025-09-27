@@ -1,4 +1,4 @@
-//import styles from "./stylles.module.css";
+import styles from "./stylles.module.css";
 // type DefaultInputProps = {
 //   type?: "text" | "number" | "search";
 //   label?: string;
@@ -27,7 +27,7 @@ export default function DefaultInput({
   return (
     <>
       {label && <label htmlFor={id}>{label}:</label>}
-      <input id={id} type={type} {...rest} />
+      <input className={styles.input} id={id} type={type} {...rest} />
     </>
   );
 }
