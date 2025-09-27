@@ -17,8 +17,6 @@ const initialState: TaskStateModel = {
 };
 
 export default function App() {
-  console.log("Hello App");
-
   const [state, setState] = useState(initialState);
 
   return (

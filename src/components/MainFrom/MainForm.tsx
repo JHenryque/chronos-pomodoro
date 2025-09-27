@@ -3,8 +3,9 @@ import Cycles from "../Cycles/Cycles";
 import DefaultButton from "../DefaultBotton/DefaultButton";
 import DefaultInput from "../DefaultInput/DefaultInput";
 import { useState } from "react";
+import type { HomeProps } from "../../pages/Home";
 
-export default function MainForm() {
+export default function MainForm({ state }: HomeProps) {
   const [button, setButton] = useState<boolean>(true);
 
   return (
@@ -23,7 +24,7 @@ export default function MainForm() {
       </div>
 
       <div className="formRow">
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Próximo intervalo é de {state.config.workTime}min.</p>
       </div>
 
       <div className="formRow">
