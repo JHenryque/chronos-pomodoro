@@ -27,3 +27,23 @@ body {
   background-size: contain;
   height: 96.6dvh;
 }
+
+/* Default Input */
+
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* --------------------- */

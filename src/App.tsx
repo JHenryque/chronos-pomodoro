@@ -5,7 +5,7 @@ import Container from "./components/Container/Container";
 import Logo from "./components/Logo";
 import Menu from "./components/Menu/Menu";
 import CountDown from "./components/CountDown";
-import Form from "./components/Form/Form";
+import DefaultInput from "./components/DefaultInput/DefaultInput";
 
 export default function App() {
   console.log("Hello App");
@@ -27,7 +27,24 @@ export default function App() {
           </button>
         </Heading>
         <CountDown />
-        <Form />
+        <form className="form">
+          <div className="formRow">
+            {/*  <DefaultInput abc={123} type="text" label="Task" /> iterxecion com a uniao */}
+            <DefaultInput id="task" type="text" label="Task" />
+          </div>
+          <div className="formRow">
+            <p>Lorem ipsum dolor sit amet.</p>
+          </div>
+
+          <div className="formRow">
+            <p>Ciclos</p>
+            <p>0 0 0 0 0 0</p>
+          </div>
+
+          <div className="formRow">
+            <button type="submit">Começar</button>
+          </div>
+        </form>
       </Container>
     </>
   );
