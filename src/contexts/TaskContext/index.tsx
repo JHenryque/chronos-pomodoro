@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext } from "react";
+import { createContext, use, useContext, useState } from "react";
 import type { TaskStateModel } from "../../models/TaskStateModel";
 
 // Estado inicial
@@ -37,8 +37,10 @@ export function TaskConstextProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const [state, setState] = useState(initialState);
+
   return (
-    <TaskContext.Provider value={{ ...initialContextValue }}>
+    <TaskContext.Provider value={{ state, setState }}>
       {children}
     </TaskContext.Provider>
   );
