@@ -5,6 +5,7 @@ import Container from "./components/Container/Container";
 import Logo from "./components/Logo";
 import Menu from "./components/Menu/Menu";
 import CountDown from "./components/CountDown";
+import Form from "./components/Form/Form";
 
 export default function App() {
   console.log("Hello App");
@@ -26,6 +27,7 @@ export default function App() {
           </button>
         </Heading>
         <CountDown />
+        <Form />
       </Container>
     </>
   );
