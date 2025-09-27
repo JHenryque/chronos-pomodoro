@@ -8,6 +8,7 @@ import CountDown from "./components/CountDown";
 import DefaultInput from "./components/DefaultInput/DefaultInput";
 import Cycles from "./components/Cycles/Cycles";
 import DefaultButton from "./components/DefaultBotton/DefaultButton";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   console.log("Hello App");
@@ -62,6 +63,8 @@ export default function App() {
             )}
           </div>
         </form>
+
+        <Footer />
       </Container>
     </>
   );
