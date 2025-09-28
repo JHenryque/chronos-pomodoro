@@ -7,8 +7,13 @@ import { useState } from "react";
 export default function MainForm() {
   const [button, setButton] = useState<boolean>(true);
 
+  function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    console.log("create new task");
+  }
+
   return (
-    <form className="form">
+    <form onSubmit={handleCreateNewTask} className="form">
       <h1>{button}</h1>
       <div className="formRow">
         {/*  <DefaultInput abc={123} type="text" label="Task" /> iterxecion com a uniao */}
