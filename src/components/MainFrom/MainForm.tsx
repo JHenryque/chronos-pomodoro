@@ -2,15 +2,17 @@ import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import Cycles from "../Cycles/Cycles";
 import DefaultButton from "../DefaultBotton/DefaultButton";
 import DefaultInput from "../DefaultInput/DefaultInput";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function MainForm() {
   const [button, setButton] = useState<boolean>(true);
   const [taskName, setTaskName] = useState<string>("");
+  const taskNameInput = useRef<HTMLInputElement>(null);
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("create new task");
+
+    console.log("create new task", taskNameInput.current?.value);
   }
 
   return (
@@ -23,9 +25,10 @@ export default function MainForm() {
           id="task"
           type="text"
           label="Task"
-          onChange={(event) => setTaskName(event.target.value)}
+          // onChange={(event) => setTaskName(event.target.value)}
+          // value={taskName}
+          ref={taskNameInput}
           placeholder="Digit a task"
-          value={taskName}
         />
       </div>
 
