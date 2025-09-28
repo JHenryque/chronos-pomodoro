@@ -7,6 +7,7 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import type { TaskModel } from "../../models/TaskModel";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
+import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 
 export default function MainForm() {
   const [button, setButton] = useState<boolean>(true);
@@ -49,7 +50,7 @@ export default function MainForm() {
       activeTask: newTask,
       currentCycle: nextCycle, // conferir
       secondsRemaining, // conferir
-      formattedSecondsRemaining: "00:00", // conferi
+      formattedSecondsRemaining: formatSecondsToMinutes(secondsRemaining), // conferi
       tasks: [...prevState.tasks, newTask],
     }));
 
