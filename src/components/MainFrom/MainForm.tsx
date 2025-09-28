@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function MainForm() {
   const [button, setButton] = useState<boolean>(true);
+  const [taskName, setTaskName] = useState<string>("");
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -22,8 +23,9 @@ export default function MainForm() {
           id="task"
           type="text"
           label="Task"
+          onChange={(event) => setTaskName(event.target.value)}
           placeholder="Digit a task"
-          disabled
+          value={taskName}
         />
       </div>
 
