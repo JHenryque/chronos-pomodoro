@@ -5,16 +5,24 @@ import DefaultInput from "../DefaultInput/DefaultInput";
 import { useRef, useState } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import type { TaskModel } from "../../models/TaskModel";
+import { getNextCycle } from "../../utils/getNextCycle";
 
 export default function MainForm() {
   const [button, setButton] = useState<boolean>(true);
-  const { setState } = useTaskContext();
+  const { state, setState } = useTaskContext();
   //const [taskName, setTaskName] = useState<string>("");
   const taskNameInput = useRef<HTMLInputElement>(null);
+
+  // ciclos
+  const nextCycle = getNextCycle(state.currentCycle);
+
+  console.log("Ciclo atual:", state.currentCycle);
+  console.log("Próximo ciclo:", nextCycle);
 
   function handleCreateNewTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    // se o campo estiver vazio, retorna
     if (taskNameInput.current === null) return;
 
     const taskName = taskNameInput.current.value.trim();
@@ -40,7 +48,7 @@ export default function MainForm() {
       ...prevState,
       config: { ...prevState.config },
       activeTask: newTask,
-      currentCycle: 1, // conferir
+      currentCycle: nextCycle, // conferir
       secondsRemaining, // conferir
       formattedSecondsRemaining: "00:00", // conferi
       tasks: [...prevState.tasks, newTask],
