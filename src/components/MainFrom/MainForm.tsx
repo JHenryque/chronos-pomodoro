@@ -2,7 +2,7 @@ import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import Cycles from "../Cycles/Cycles";
 import DefaultButton from "../DefaultBotton/DefaultButton";
 import DefaultInput from "../DefaultInput/DefaultInput";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import type { TaskModel } from "../../models/TaskModel";
 import { getNextCycle } from "../../utils/getNextCycle";
@@ -10,7 +10,6 @@ import { getNextCycleType } from "../../utils/getNextCycleType";
 import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 
 export default function MainForm() {
-  const [button, setButton] = useState<boolean>(true);
   const { state, setState } = useTaskContext();
   //const [taskName, setTaskName] = useState<string>("");
   const taskNameInput = useRef<HTMLInputElement>(null);
@@ -57,9 +56,21 @@ export default function MainForm() {
     //taskNameInput.current.value = "";
   }
 
+  function handleInterruptTask(
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) {
+    e.preventDefault();
+
+    setState((prevState) => ({
+      ...prevState,
+      activeTask: null,
+      secondsRemaining: 0,
+      formattedSecondsRemaining: "00:00",
+    }));
+  }
+
   return (
     <form onSubmit={handleCreateNewTask} className="form">
-      <h1>{button}</h1>
       <div className="formRow">
         {/*  <DefaultInput abc={123} type="text" label="Task" /> iterxecion com a uniao */}
 
@@ -86,6 +97,34 @@ export default function MainForm() {
       )}
 
       <div className="formRow">
+        {/* o react nao reconhece o botao de parar po causa do componente igual, por isso o ! tem que ser usado key='para que ele reconheca coloando nome diferente' de que butao ta clicando 
+          ou
+          usar dois componentes diferentes
+          ou 
+          usar uma funçao e passar e previnir o default
+        */}
+
+        {/* {!state.activeTask && (
+          <DefaultButton
+            aria-label="Iniciar tarefa"
+            title="Iniciar tarefa"
+            icon={<PlayCircleIcon />}
+            type="submit"
+            key="button_play"
+          />
+        )}
+
+        {!!state.activeTask && (
+          <DefaultButton
+            aria-label="Parar tarefa"
+            title="Parar tarefa"
+            icon={<StopCircleIcon />}
+            color="red"
+            onClick={handleInterruptTask}
+            key="button_stop"
+          />
+        )} */}
+
         {!state.activeTask ? (
           <DefaultButton
             aria-label="Iniciar tarefa"
@@ -99,6 +138,7 @@ export default function MainForm() {
             title="Parar tarefa"
             icon={<StopCircleIcon />}
             color="red"
+            onClick={handleInterruptTask}
           />
         )}
       </div>
