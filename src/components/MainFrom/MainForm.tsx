@@ -86,17 +86,19 @@ export default function MainForm() {
       )}
 
       <div className="formRow">
-        {button ? (
+        {!state.activeTask ? (
           <DefaultButton
+            aria-label="Iniciar tarefa"
+            title="Iniciar tarefa"
             icon={<PlayCircleIcon />}
-            color="green"
-            onClick={() => setButton(true)}
+            type="submit"
           />
         ) : (
           <DefaultButton
+            aria-label="Parar tarefa"
+            title="Parar tarefa"
             icon={<StopCircleIcon />}
             color="red"
-            onClick={() => setButton(false)}
           />
         )}
       </div>
