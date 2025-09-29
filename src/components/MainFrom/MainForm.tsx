@@ -66,6 +66,12 @@ export default function MainForm() {
       activeTask: null,
       secondsRemaining: 0,
       formattedSecondsRemaining: "00:00",
+      tasks: prevState.tasks.map((task) => {
+        if (prevState.activeTask?.id === task.id) {
+          return { ...task, interruptDate: Date.now() };
+        }
+        return task;
+      }),
     }));
   }
 
@@ -97,14 +103,13 @@ export default function MainForm() {
       )}
 
       <div className="formRow">
-        {/* o react nao reconhece o botao de parar po causa do componente igual, por isso o ! tem que ser usado key='para que ele reconheca coloando nome diferente' de que butao ta clicando 
+        {/*o react nao reconhece o botao de parar po causa do componente igual, por isso o ! tem que ser usado key='para que ele reconheca coloando nome diferente' de que butao ta clicando 
           ou
           usar dois componentes diferentes
           ou 
           usar uma funçao e passar e previnir o default
-        */}
-
-        {/* {!state.activeTask && (
+        --------------------------------------------------- opcional, outra forma de fazer ----------------------------------------------------------------------------------
+        {!state.activeTask && (
           <DefaultButton
             aria-label="Iniciar tarefa"
             title="Iniciar tarefa"
