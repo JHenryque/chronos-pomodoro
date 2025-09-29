@@ -7,8 +7,8 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import type { TaskModel } from "../../models/TaskModel";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
-import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { Tips } from "../Tips";
 
 export default function MainForm() {
   const { state, dispatch } = useTaskContext();
@@ -71,7 +71,7 @@ export default function MainForm() {
       </div>
 
       <div className="formRow">
-        <p>Próximo intervalo é de 25min.</p>
+        <Tips />
       </div>
 
       {state.currentCycle > 0 && (

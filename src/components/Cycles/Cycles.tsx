@@ -32,9 +32,7 @@ export default function Cycles() {
               title={`Indicador de ciclo: ${cycleDescriptionMap[nextCycleType]}`}
             ></span>
           );
-          //
-
-          return index + 1;
+          //return index + 1;
         })}
 
         {/* <span className={`${styles.cycleDot} ${styles.workTime}`}></span>
