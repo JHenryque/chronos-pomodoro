@@ -1,28 +1,27 @@
+let isRunning = false;
+
 self.onmessage = function (e) {
   console.log("WORKER recebeu", e.data);
 
-  switch (e.data) {
-    case "FAVOR": {
-      self.postMessage("Sim, posso fazer um favor");
+  if (isRunning) return;
 
-      break;
-    }
+  isRunning = true;
 
-    case "FALA_OI": {
-      self.postMessage("OK: OI!");
+  const state = e.data;
+  const { activeTask, secondsRemaining } = state;
 
-      break;
-    }
+  const endDate = activeTask.startDate + secondsRemaining * 1000;
+  const now = Date.now();
+  let countDownSeconds = Math.ceil((endDate - now) / 1000);
 
-    case "FECHAR": {
-      self.postMessage("Tá bom, vou fechar");
+  function tick() {
+    self.postMessage(countDownSeconds);
 
-      self.close();
+    const now = Date.now();
+    countDownSeconds = Math.floor((endDate - now) / 1000);
 
-      break;
-    }
-
-    default:
-      self.postMessage("Não entendi");
+    setTimeout(tick, 1000);
   }
+
+  tick();
 };
