@@ -71,6 +71,7 @@ export default function MainForm() {
           // value={taskName}
           ref={taskNameInput}
           placeholder="Digit a task"
+          disabled={!!state.activeTask}
         />
       </div>
 
