@@ -1,6 +1,4 @@
-import { Timer } from "lucide-react";
 import Container from "../../components/Container/Container";
-import Heading from "../../components/Heading";
 import Logo from "../../components/Logo";
 import Menu from "../../components/Menu/Menu";
 import Footer from "../../components/Footer/Footer";
@@ -16,21 +14,7 @@ export default function MainTemplate({ children }: MainTemplateProps) {
     <>
       <Container>
         <Logo />
-
         <Menu />
-
-        <Heading>
-          Ola Mundo{" "}
-          <button
-            onClick={() =>
-              confirm("Tem ceteza que deseja clickar?")
-                ? alert("Ola Mundo Henrique")
-                : null
-            }
-          >
-            <Timer />
-          </button>
-        </Heading>
       </Container>
 
       <Container>{children}</Container>
