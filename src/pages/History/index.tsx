@@ -4,6 +4,7 @@ import Heading from "../../components/Heading";
 import MainTemplate from "../../templates/MainTemplate";
 import styles from "./styles.module.css";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { formatDate } from "../../utils/formatDate";
 
 export default function History() {
   const { state } = useTaskContext();
@@ -46,7 +47,7 @@ export default function History() {
 
                   <td>{task.duration}min</td>
 
-                  <td>{new Date(task.startDate).toLocaleDateString()}</td>
+                  <td>{formatDate(task.startDate)}</td>
 
                   <td>{task.interruptDate ? "Concluida" : "Em andamento"}</td>
 
