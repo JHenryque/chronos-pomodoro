@@ -48,7 +48,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
       };
     }
 
-    case TaskActionTypes.COMPLET_TASK: {
+    case TaskActionTypes.COMPLETE_TASK: {
       return {
         ...state, //spread operator
         activeTask: null,
