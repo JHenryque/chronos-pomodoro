@@ -19,14 +19,14 @@ export function TaskConstextProvider({ children }: TaskConstextProviderProps) {
     const countDownSeconds = event.data;
     console.log(countDownSeconds);
 
-    dispatch({
-      type: TaskActionTypes.COUNT_DOWN,
-      payload: { secondsRemaining: countDownSeconds },
-    });
-
     if (countDownSeconds <= 0) {
-      console.log("worker terminou");
+      dispatch({ type: TaskActionTypes.COMPLETE_TASK });
       worker.terminate();
+    } else {
+      dispatch({
+        type: TaskActionTypes.COUNT_DOWN,
+        payload: { secondsRemaining: countDownSeconds },
+      });
     }
   });
 
