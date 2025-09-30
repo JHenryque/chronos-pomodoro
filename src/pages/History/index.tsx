@@ -5,6 +5,7 @@ import MainTemplate from "../../templates/MainTemplate";
 import styles from "./styles.module.css";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { formatDate } from "../../utils/formatDate";
+import { getTaskStatus } from "../../utils/getTaskStatus";
 
 export default function History() {
   const { state } = useTaskContext();
@@ -28,13 +29,9 @@ export default function History() {
           <thead>
             <tr>
               <th>Tarefa</th>
-
               <th>Duração</th>
-
               <th>Data</th>
-
               <th>Status</th>
-
               <th>Tipo</th>
             </tr>
           </thead>
@@ -44,13 +41,9 @@ export default function History() {
               return (
                 <tr key={task.id}>
                   <td>{task.name}</td>
-
                   <td>{task.duration}min</td>
-
                   <td>{formatDate(task.startDate)}</td>
-
-                  <td>{task.interruptDate ? "Concluida" : "Em andamento"}</td>
-
+                  <td>{getTaskStatus(task, state.activeTask)}</td>
                   <td>{task.type}</td>
                 </tr>
               );
