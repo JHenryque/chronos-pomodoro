@@ -21,7 +21,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
       };
     }
 
-    case TaskActionTypes.INTERRUPT_TASK:
+    case TaskActionTypes.INTERRUPT_TASK: {
       //   setState((prevState) => ({
       //     ...prevState,
       //     activeTask: null,
@@ -46,9 +46,37 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
           return task;
         }),
       };
+    }
+
+    case TaskActionTypes.COMPLET_TASK: {
+      return {
+        ...state, //spread operator
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        //currentCycle: getNextCycle(state.currentCycle),
+        tasks: state.tasks.map((task) => {
+          if (state.activeTask?.id === task.id) {
+            return { ...task, completeDate: Date.now() };
+          }
+          return task;
+        }),
+      };
+    }
+
     case TaskActionTypes.RESET_STATE:
       return {
         ...state, //spread operator
       };
+
+    case TaskActionTypes.COUNT_DOWN: {
+      return {
+        ...state, //spread operator
+        secondsRemaining: action.payload.secondsRemaining,
+        formattedSecondsRemaining: formatSecondsToMinutes(
+          action.payload.secondsRemaining
+        ),
+      };
+    }
   }
 }
