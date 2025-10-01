@@ -8,6 +8,7 @@ export function NotFound() {
   useEffect(() => {
     document.title = "Página não encontrada - Chronos Pomodoro";
   }, []);
+
   return (
     <MainTemplate>
       <GenericHtml>

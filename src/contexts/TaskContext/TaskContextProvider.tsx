@@ -3,9 +3,10 @@ import { initialTaskState } from "./initialTaskState";
 import { TaskContext } from "./TaskContext";
 import { taskReducer } from "./taskReducer";
 import { TimerWorkerManage } from "../../workers/timerWorkerManage";
-import { TaskActionTypes } from "./taskActions";
+
 import { loadBeep } from "../../utils/loadBeep";
 import type { TaskStateModel } from "../../models/TaskStateModel";
+import { TaskActionTypes } from "./taskActions";
 
 type TaskConstextProviderProps = {
   children: React.ReactNode;

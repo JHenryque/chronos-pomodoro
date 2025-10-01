@@ -7,9 +7,9 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import type { TaskModel } from "../../models/TaskModel";
 import { getNextCycle } from "../../utils/getNextCycle";
 import { getNextCycleType } from "../../utils/getNextCycleType";
-import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 import { Tips } from "../Tips";
 import { showMessage } from "../../adapters/shownMessage";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 
 export default function MainForm() {
   const { state, dispatch } = useTaskContext();
