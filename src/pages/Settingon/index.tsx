@@ -4,7 +4,7 @@ import DefaultButton from "../../components/DefaultBotton/DefaultButton";
 import DefaultInput from "../../components/DefaultInput/DefaultInput";
 import Heading from "../../components/Heading";
 import MainTemplate from "../../templates/MainTemplate";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { showMessage } from "../../adapters/shownMessage";
 import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
@@ -59,6 +59,10 @@ export default function Settingon() {
 
     showMessage.success("Configuracoes salvas com sucesso.");
   }
+
+  useEffect(() => {
+    document.title = "Configurações - Chronos Pomodoro";
+  }, []);
 
   return (
     <MainTemplate>
