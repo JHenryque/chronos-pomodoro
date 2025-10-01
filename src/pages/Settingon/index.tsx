@@ -6,6 +6,7 @@ import Heading from "../../components/Heading";
 import MainTemplate from "../../templates/MainTemplate";
 import { useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
+import { showMessage } from "../../adapters/shownMessage";
 
 export default function Settingon() {
   const { state } = useTaskContext();
@@ -17,11 +18,36 @@ export default function Settingon() {
   function handelSaveSettings(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const workTime = workTimeInputRef.current?.value;
-    const shortBreakTime = shortBreakTimeInputRef.current?.value;
-    const longBreakTime = longBreakTimeInputRef.current?.value;
+    const formErrors = [];
 
-    console.log("InputRef", workTime, shortBreakTime, longBreakTime);
+    const workTime = Number(workTimeInputRef.current?.value);
+    const shortBreakTime = Number(shortBreakTimeInputRef.current?.value);
+    const longBreakTime = Number(longBreakTimeInputRef.current?.value);
+
+    if (isNaN(workTime) || isNaN(shortBreakTime) || isNaN(longBreakTime)) {
+      formErrors.push("Digite apenas numeros");
+    }
+
+    if (workTime < 1 || workTime > 90) {
+      formErrors.push("Digite apenas numeros maiores que zero e ate 99");
+    }
+
+    if (shortBreakTime < 1 || shortBreakTime > 30) {
+      formErrors.push("Digite apenas numeros maiores que zero e ate 30");
+    }
+
+    if (longBreakTime < 1 || longBreakTime > 60) {
+      formErrors.push("Digite apenas numeros maiores que zero e ate 60");
+    }
+
+    if (formErrors.length > 0) {
+      formErrors.forEach((error) => {
+        showMessage.error(error);
+      });
+      return;
+    }
+
+    console.log("salvar");
   }
 
   return (
@@ -41,6 +67,11 @@ export default function Settingon() {
               label="Foco"
               ref={workTimeInputRef}
               defaultValue={state.config.workTime}
+              type="number"
+              // min="1"
+              // max="90"
+              // step="2"
+              // maxLength={2}
             />
           </div>
 
@@ -50,6 +81,7 @@ export default function Settingon() {
               label="Descanso curto"
               ref={shortBreakTimeInputRef}
               defaultValue={state.config.shortBreakTime}
+              type="number"
             />
           </div>
 
@@ -59,6 +91,7 @@ export default function Settingon() {
               label="Descanso longo"
               ref={longBreakTimeInputRef}
               defaultValue={state.config.longBreakTime}
+              type="number"
             />
           </div>
 

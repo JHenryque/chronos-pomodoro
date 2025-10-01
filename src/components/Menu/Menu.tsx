@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import styles from "./Menu.module.css";
 import { useEffect, useState } from "react";
-import { NavLink, Route, Router } from "react-router";
+import { NavLink } from "react-router";
 import { RouterLink } from "../RouterLink";
 
 type AvailableThemes = "light" | "dark";
@@ -71,7 +71,7 @@ export default function Menu() {
 
       <RouterLink
         className={styles.menuLink}
-        href="/settings"
+        href="/settings/"
         aria-label="Configurações"
         title="Configurações"
       >
