@@ -7,9 +7,10 @@ import MainTemplate from "../../templates/MainTemplate";
 import { useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { showMessage } from "../../adapters/shownMessage";
+import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
 
 export default function Settingon() {
-  const { state } = useTaskContext();
+  const { state, dispatch } = useTaskContext();
 
   const workTimeInputRef = useRef<HTMLInputElement>(null);
   const shortBreakTimeInputRef = useRef<HTMLInputElement>(null);
@@ -47,7 +48,16 @@ export default function Settingon() {
       return;
     }
 
-    console.log("salvar");
+    dispatch({
+      type: TaskActionTypes.CHANGE_SETTINGS,
+      payload: {
+        workTime,
+        shortBreakTime,
+        longBreakTime,
+      },
+    });
+
+    showMessage.success("Configuracoes salvas com sucesso.");
   }
 
   return (
