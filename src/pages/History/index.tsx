@@ -47,6 +47,12 @@ export default function History() {
     dispatch({ type: TaskActionTypes.RESET_STATE });
   }, [confirmationClearHistory, dispatch]);
 
+  useEffect(() => {
+    return () => {
+      showMessage.dismiss();
+    };
+  }, []);
+
   function handleSortTask({ field }: Pick<SortTasksOptions, "field">) {
     const newDirection = sortTasksOptions.direction === "asc" ? "desc" : "asc";
 
