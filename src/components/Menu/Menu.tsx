@@ -7,7 +7,8 @@ import {
 } from "lucide-react";
 import styles from "./Menu.module.css";
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router";
+import { NavLink, Route, Router } from "react-router";
+import { RouterLink } from "../RouterLink";
 
 type AvailableThemes = "light" | "dark";
 
@@ -68,14 +69,14 @@ export default function Menu() {
         <HistoryIcon />
       </NavLink>
 
-      <a
+      <RouterLink
         className={styles.menuLink}
-        href="#"
+        href="/settings"
         aria-label="Configurações"
         title="Configurações"
       >
         <SettingsIcon />
-      </a>
+      </RouterLink>
 
       <a
         className={styles.menuLink}
