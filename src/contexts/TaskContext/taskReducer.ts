@@ -1,8 +1,8 @@
-import type { TaskStateModel } from "../../models/TaskStateModel";
-import { formatSecondsToMinutes } from "../../utils/formatSecondsToMinutes";
-import { getNextCycle } from "../../utils/getNextCycle";
-import { initialTaskState } from "./initialTaskState";
-import { TaskActionTypes, type TaskActionModel } from "./taskActions";
+import type { TaskStateModel } from '../../models/TaskStateModel';
+import { formatSecondsToMinutes } from '../../utils/formatSecondsToMinutes';
+import { getNextCycle } from '../../utils/getNextCycle';
+import { initialTaskState } from './initialTaskState';
+import { TaskActionTypes, type TaskActionModel } from './taskActions';
 
 export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
   switch (action.type) {
@@ -22,24 +22,12 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
     }
 
     case TaskActionTypes.INTERRUPT_TASK: {
-      //   setState((prevState) => ({
-      //     ...prevState,
-      //     activeTask: null,
-      //     secondsRemaining: 0,
-      //     formattedSecondsRemaining: "00:00",
-      //     tasks: prevState.tasks.map((task) => {
-      //       if (prevState.activeTask?.id === task.id) {
-      //         return { ...task, interruptDate: Date.now() };
-      //       }
-      //       return task;
-      //     }),
-      //   }));
       return {
         ...state, //spread operator
         activeTask: null,
         secondsRemaining: 0,
-        formattedSecondsRemaining: "00:00",
-        tasks: state.tasks.map((task) => {
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map(task => {
           if (state.activeTask?.id === task.id) {
             return { ...task, interruptDate: Date.now() };
           }
@@ -53,9 +41,8 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
         ...state, //spread operator
         activeTask: null,
         secondsRemaining: 0,
-        formattedSecondsRemaining: "00:00",
-        //currentCycle: getNextCycle(state.currentCycle),
-        tasks: state.tasks.map((task) => {
+        formattedSecondsRemaining: '00:00',
+        tasks: state.tasks.map(task => {
           if (state.activeTask?.id === task.id) {
             return { ...task, completeDate: Date.now() };
           }
@@ -74,7 +61,7 @@ export function taskReducer(state: TaskStateModel, action: TaskActionModel) {
         ...state, //spread operator
         secondsRemaining: action.payload.secondsRemaining,
         formattedSecondsRemaining: formatSecondsToMinutes(
-          action.payload.secondsRemaining
+          action.payload.secondsRemaining,
         ),
       };
     }

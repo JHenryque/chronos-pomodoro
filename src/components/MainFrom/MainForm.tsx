@@ -1,21 +1,20 @@
-import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
-import Cycles from "../Cycles/Cycles";
-import DefaultButton from "../DefaultBotton/DefaultButton";
-import DefaultInput from "../DefaultInput/DefaultInput";
-import { useRef } from "react";
-import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
-import type { TaskModel } from "../../models/TaskModel";
-import { getNextCycle } from "../../utils/getNextCycle";
-import { getNextCycleType } from "../../utils/getNextCycleType";
-import { Tips } from "../Tips";
-import { showMessage } from "../../adapters/shownMessage";
-import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { PlayCircleIcon, StopCircleIcon } from 'lucide-react';
+import Cycles from '../Cycles/Cycles';
+import DefaultButton from '../DefaultBotton/DefaultButton';
+import DefaultInput from '../DefaultInput/DefaultInput';
+import { useRef } from 'react';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import type { TaskModel } from '../../models/TaskModel';
+import { getNextCycle } from '../../utils/getNextCycle';
+import { getNextCycleType } from '../../utils/getNextCycleType';
+import { Tips } from '../Tips';
+import { showMessage } from '../../adapters/shownMessage';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
 
 export default function MainForm() {
   const { state, dispatch } = useTaskContext();
-  //const [taskName, setTaskName] = useState<string>("");
   const taskNameInput = useRef<HTMLInputElement>(null);
-  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || "";
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
 
   // ciclos
   const nextCycle = getNextCycle(state.currentCycle);
@@ -31,7 +30,7 @@ export default function MainForm() {
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      showMessage.warn("Digite o nome da tarefa");
+      showMessage.warn('Digite o nome da tarefa');
       return;
     }
 
@@ -47,88 +46,57 @@ export default function MainForm() {
 
     dispatch({ type: TaskActionTypes.START_TASK, payload: newTask });
 
-    showMessage.success("Tarefa iniciada!");
+    showMessage.success('Tarefa iniciada!');
   }
 
   function handleInterruptTask(
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     e.preventDefault();
     showMessage.dismiss();
-    showMessage.warn("Tarefa interrompida!");
+    showMessage.warn('Tarefa interrompida!');
 
     dispatch({ type: TaskActionTypes.INTERRUPT_TASK });
   }
 
   return (
-    <form onSubmit={handleCreateNewTask} className="form">
-      <div className="formRow">
-        {/*  <DefaultInput abc={123} type="text" label="Task" /> iterxecion com a uniao */}
-
+    <form onSubmit={handleCreateNewTask} className='form'>
+      <div className='formRow'>
         <DefaultInput
-          id="task"
-          type="text"
-          label="Task"
-          // onChange={(event) => setTaskName(event.target.value)}
-          // value={taskName}
+          id='task'
+          type='text'
+          label='Task'
           ref={taskNameInput}
-          placeholder="Digit a task"
+          placeholder='Digit a task'
           disabled={!!state.activeTask}
           defaultValue={lastTaskName}
         />
       </div>
 
-      <div className="formRow">
+      <div className='formRow'>
         <Tips />
       </div>
 
       {state.currentCycle > 0 && (
-        <div className="formRow">
+        <div className='formRow'>
           <Cycles />
         </div>
       )}
 
-      <div className="formRow">
-        {/*o react nao reconhece o botao de parar po causa do componente igual, por isso o ! tem que ser usado key='para que ele reconheca coloando nome diferente' de que butao ta clicando 
-          ou
-          usar dois componentes diferentes
-          ou 
-          usar uma funçao e passar e previnir o default
-        --------------------------------------------------- opcional, outra forma de fazer ----------------------------------------------------------------------------------
-        {!state.activeTask && (
-          <DefaultButton
-            aria-label="Iniciar tarefa"
-            title="Iniciar tarefa"
-            icon={<PlayCircleIcon />}
-            type="submit"
-            key="button_play"
-          />
-        )}
-
-        {!!state.activeTask && (
-          <DefaultButton
-            aria-label="Parar tarefa"
-            title="Parar tarefa"
-            icon={<StopCircleIcon />}
-            color="red"
-            onClick={handleInterruptTask}
-            key="button_stop"
-          />
-        )} */}
-
+      <div className='formRow'>
         {!state.activeTask ? (
           <DefaultButton
-            aria-label="Iniciar tarefa"
-            title="Iniciar tarefa"
+            aria-label='Iniciar tarefa'
+            title='Iniciar tarefa'
             icon={<PlayCircleIcon />}
-            type="submit"
+            type='submit'
           />
         ) : (
           <DefaultButton
-            aria-label="Parar tarefa"
-            title="Parar tarefa"
+            aria-label='Parar tarefa'
+            title='Parar tarefa'
             icon={<StopCircleIcon />}
-            color="red"
+            color='red'
             onClick={handleInterruptTask}
           />
         )}

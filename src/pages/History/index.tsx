@@ -1,15 +1,15 @@
-import { TrashIcon } from "lucide-react";
-import DefaultButton from "../../components/DefaultBotton/DefaultButton";
-import Heading from "../../components/Heading";
-import MainTemplate from "../../templates/MainTemplate";
-import styles from "./styles.module.css";
-import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
-import { formatDate } from "../../utils/formatDate";
-import { getTaskStatus } from "../../utils/getTaskStatus";
-import { sortTasks, type SortTasksOptions } from "../../utils/sortTask";
-import { useEffect, useState } from "react";
-import { showMessage } from "../../adapters/shownMessage";
-import { TaskActionTypes } from "../../contexts/TaskContext/taskActions";
+import { TrashIcon } from 'lucide-react';
+import DefaultButton from '../../components/DefaultBotton/DefaultButton';
+import Heading from '../../components/Heading';
+import MainTemplate from '../../templates/MainTemplate';
+import styles from './styles.module.css';
+import { useTaskContext } from '../../contexts/TaskContext/useTaskContext';
+import { formatDate } from '../../utils/formatDate';
+import { getTaskStatus } from '../../utils/getTaskStatus';
+import { sortTasks, type SortTasksOptions } from '../../utils/sortTask';
+import { useEffect, useState } from 'react';
+import { showMessage } from '../../adapters/shownMessage';
+import { TaskActionTypes } from '../../contexts/TaskContext/taskActions';
 
 export default function History() {
   const { state, dispatch } = useTaskContext();
@@ -21,14 +21,14 @@ export default function History() {
     () => {
       return {
         tasks: sortTasks({ tasks: state.tasks }),
-        field: "startDate",
-        direction: "desc",
+        field: 'startDate',
+        direction: 'desc',
       };
-    }
+    },
   );
 
   useEffect(() => {
-    setSortTasksOptions((prevState) => ({
+    setSortTasksOptions(prevState => ({
       ...prevState,
       tasks: sortTasks({
         tasks: state.tasks,
@@ -40,8 +40,6 @@ export default function History() {
 
   useEffect(() => {
     if (!confirmationClearHistory) return;
-
-    console.log("limpou");
     setConfirmationClearHistory(false);
 
     dispatch({ type: TaskActionTypes.RESET_STATE });
@@ -54,11 +52,11 @@ export default function History() {
   }, []);
 
   useEffect(() => {
-    document.title = "Histórico - Chronos Pomodoro";
+    document.title = 'Histórico - Chronos Pomodoro';
   }, []);
 
-  function handleSortTask({ field }: Pick<SortTasksOptions, "field">) {
-    const newDirection = sortTasksOptions.direction === "asc" ? "desc" : "asc";
+  function handleSortTask({ field }: Pick<SortTasksOptions, 'field'>) {
+    const newDirection = sortTasksOptions.direction === 'asc' ? 'desc' : 'asc';
 
     setSortTasksOptions({
       tasks: sortTasks({
@@ -73,10 +71,10 @@ export default function History() {
 
   function handleResetHistory() {
     showMessage.confirm(
-      "Tem certeza que deseja apagar todo o histórico?",
-      (confirm) => {
+      'Tem certeza que deseja apagar todo o histórico?',
+      confirm => {
         setConfirmationClearHistory(confirm);
-      }
+      },
     );
   }
 
@@ -88,9 +86,9 @@ export default function History() {
           <span className={styles.buttonContainer}>
             <DefaultButton
               icon={<TrashIcon />}
-              color="red"
-              aria-label="Apagar todo o hiorico"
-              title="Apagar todo o hiorico"
+              color='red'
+              aria-label='Apagar todo o hiorico'
+              title='Apagar todo o hiorico'
               onClick={handleResetHistory}
             />
           </span>
@@ -103,19 +101,19 @@ export default function History() {
             <thead>
               <tr>
                 <th
-                  onClick={() => handleSortTask({ field: "name" })}
+                  onClick={() => handleSortTask({ field: 'name' })}
                   className={styles.thSort}
                 >
                   Tarefa ↕
                 </th>
                 <th
-                  onClick={() => handleSortTask({ field: "duration" })}
+                  onClick={() => handleSortTask({ field: 'duration' })}
                   className={styles.thSort}
                 >
                   Duração ↕
                 </th>
                 <th
-                  onClick={() => handleSortTask({ field: "startDate" })}
+                  onClick={() => handleSortTask({ field: 'startDate' })}
                   className={styles.thSort}
                 >
                   Data ↕
@@ -126,11 +124,11 @@ export default function History() {
             </thead>
 
             <tbody>
-              {sortTasksOptions.tasks.map((task) => {
+              {sortTasksOptions.tasks.map(task => {
                 const taskTypeDictionary = {
-                  workTime: "Foco",
-                  shortBreakTime: "Descanso Curta",
-                  longBreakTime: "Descanso Longa",
+                  workTime: 'Foco',
+                  shortBreakTime: 'Descanso Curta',
+                  longBreakTime: 'Descanso Longa',
                 };
 
                 return (

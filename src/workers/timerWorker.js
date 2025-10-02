@@ -1,8 +1,6 @@
 let isRunning = false;
 
 self.onmessage = function (e) {
-  console.log("WORKER recebeu", e.data);
-
   if (isRunning) return;
 
   isRunning = true;
